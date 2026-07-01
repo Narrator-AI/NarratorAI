@@ -214,6 +214,16 @@
 * [ ] 视频压制前端界面
 * [ ] AI 解说交互界面
 
+## 📮 联系我们
+
+欢迎通过微信咨询 API 授权、商务合作、产品试用和技术支持。
+
+- **微信号:** gezimufeng
+
+<div align="center">
+  <img src="./static/contact/wechat-qr.png" width="240" alt="NarratorAI 微信二维码">
+</div>
+
 ## 🔐 许可说明
 
 * **前端代码:** 采用 [MIT License](https://opensource.org/licenses/MIT) 开源

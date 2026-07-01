@@ -212,6 +212,16 @@
 * [ ] Video embedding frontend interface
 * [ ] AI narration interactive interface
 
+## 📮 Contact Us
+
+Contact us on WeChat for API licensing, business cooperation, product trials, and technical support.
+
+- **WeChat ID:** gezimufeng
+
+<div align="center">
+  <img src="./static/contact/wechat-qr.png" width="240" alt="NarratorAI WeChat QR code">
+</div>
+
 ## 🔐 License
 
 * **Frontend Code:** Released under [MIT License](https://opensource.org/licenses/MIT)
