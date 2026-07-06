@@ -1,0 +1,25 @@
+name: Commitlint
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  check-title:
+    name: check-title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate pull request title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -euo pipefail
+          pattern='^(feat|fix|docs|chore|refactor|test|style|perf|ci|build)(\([a-z0-9._-]+\))?!?: .+'
+          if ! printf '%s' "$PR_TITLE" | grep -Eq "$pattern"; then
+            echo "::error::PR title must follow Conventional Commits, for example: docs(readme): update usage"
+            exit 1
+          fi

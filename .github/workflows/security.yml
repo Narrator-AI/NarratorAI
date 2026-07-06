@@ -1,0 +1,35 @@
+name: Security
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-safety-scan:
+    name: public-safety-scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Scan for private markers
+        run: |
+          set -euo pipefail
+          if grep -RInE \
+            --exclude-dir=.git \
+            --exclude-dir=node_modules \
+            --exclude-dir=.next \
+            'mastluo|james37950|chandlerlou|GridLtd-ProductDev|Gridltd-DevOps|BEGIN [A-Z ]*PRIVATE KEY' .; then
+            echo "::error::Private marker or private key pattern found."
+            exit 1
+          fi
